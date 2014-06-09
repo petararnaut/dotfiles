@@ -3,3 +3,5 @@
 	name = Petar Arnaut
 [core]
 	editor = /usr/bin/vim
+[push]
+	default = simple
