@@ -1,0 +1,5 @@
+[user]
+	email = petar@eventsage.com
+	name = Petar Arnaut
+[core]
+	editor = /usr/bin/vim
