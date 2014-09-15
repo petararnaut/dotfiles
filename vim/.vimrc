@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-filetype off 
+filetype off
 filetype off                  " required
 
 
@@ -20,6 +20,7 @@ set spelllang=en_ca "set spelling language to Canadian English
 set statusline=%F\ %m%r%h%w\ [%l,%v]\ [%L]\ (%p%%) "status line format
 set vb t_vb= "disable visual bell + terminal bell
 
+autocmd BufWritePre * :%s/\s\+$//e
 
 " File tabbing
 au BufRead,BufNewFile *.py,*.pyw,*.sh set expandtab
@@ -35,9 +36,22 @@ au BufRead,BufNewFile *.haml,*.sass,*.scss set expandtab
 au BufRead,BufNewFile *.haml,*.sass,*.scss set tabstop=2
 au BufRead,BufNewFile *.haml,*.sass,*.scss set softtabstop=2
 
+" Key mappings
+let mapleader=" "
+map <F2> :NERDTreeToggle <CR>
+map <F3> :nohl <CR>
+map <F4> :set spell!<CR>
+map <C-g> :FufFileWithCurrentBufferDir <CR>
+nmap <leader>t :tabnew<CR>:NERDTreeToggle<CR>
+nmap [e :lprevious<CR>
+nmap ]e :lnext<CR>
+command! Q qa
 
-
-
+"command-{#} to change tabs
+nmap <D-1> 1gt
+nmap <D-2> 2gt
+nmap <D-3> 3gt
+nmap <D-4> 4gt
 
 
 map <up> <C-W>k
@@ -53,10 +67,11 @@ call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-
+Plugin 'vim-scripts/matchit.zip'
 
 Plugin 'L9'
 "Syntastic options
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_mode_map = { 'mode': 'active',
 \ 'active_filetypes': ['javascript', 'python'],
 \ 'passive_filetypes': ['html'] }
@@ -71,15 +86,13 @@ let g:syntastic_python_checkers=['pylint']
 let NERDTreeIgnore = ['\.pyc$']
 map <F2> :NERDTreeToggle <CR>
 
-
+Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdtree'
 Plugin 'hdima/python-syntax'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'rodjek/vim-puppet'
 Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
-
-
 
 call vundle#end()
 
@@ -91,3 +104,6 @@ colorscheme solarized
 
 filetype plugin indent on
 
+"Code folding
+set foldlevelstart=1
+au FileType javascript call JavaScriptFold()
