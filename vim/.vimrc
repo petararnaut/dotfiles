@@ -67,6 +67,7 @@ call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'vim-scripts/matchit.zip'
 
 Plugin 'L9'
